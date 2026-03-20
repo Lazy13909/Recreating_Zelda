@@ -1,0 +1,70 @@
+[gd_scene format=3 uid="uid://deba7potrwcq5"]
+
+[ext_resource type="PackedScene" uid="uid://o5hygn4u7djq" path="res://scenes/entities/player/player.tscn" id="1_2q6dc"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_rd3vj"]
+sky_top_color = Color(0.2552329, 0.27922758, 0.58040255, 1)
+sky_horizon_color = Color(0.504488, 0.50273657, 0.56903034, 1)
+ground_horizon_color = Color(0.504488, 0.50273657, 0.56903034, 1)
+
+[sub_resource type="Sky" id="Sky_2q6dc"]
+sky_material = SubResource("ProceduralSkyMaterial_rd3vj")
+
+[sub_resource type="Environment" id="Environment_w7c3h"]
+background_mode = 2
+sky = SubResource("Sky_2q6dc")
+tonemap_mode = 2
+sdfgi_enabled = true
+glow_enabled = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_w7c3h"]
+size = Vector3(100, 0.5, 100)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_w8frs"]
+size = Vector3(100, 0.5, 100)
+
+[sub_resource type="BoxMesh" id="BoxMesh_2q6dc"]
+size = Vector3(1, 5, 5)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_w7c3h"]
+size = Vector3(1, 5, 5)
+
+[node name="Level" type="Node3D" unique_id=502659029]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=11954523]
+environment = SubResource("Environment_w7c3h")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=533705827]
+transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 0, 0)
+light_color = Color(0.7303892, 0.68375325, 0.93986684, 1)
+light_energy = 2.5
+shadow_enabled = true
+
+[node name="OmniLight3D" type="OmniLight3D" parent="." unique_id=1820446640]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.53842366, 0)
+
+[node name="Entities" type="Node3D" parent="." unique_id=1765622773]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+
+[node name="player" parent="Entities" unique_id=719704501 instance=ExtResource("1_2q6dc")]
+
+[node name="Enviroment" type="Node3D" parent="." unique_id=367110898]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Enviroment" unique_id=1602162955]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.24398331, 0)
+
+[node name="CSGMesh3D" type="CSGMesh3D" parent="Enviroment/StaticBody3D" unique_id=1800103641]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0039113164, 0)
+mesh = SubResource("BoxMesh_w7c3h")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Enviroment/StaticBody3D" unique_id=2026823557]
+shape = SubResource("BoxShape3D_w8frs")
+
+[node name="StaticBody3D2" type="StaticBody3D" parent="Enviroment" unique_id=1610802328]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 2.5, -13.133961)
+
+[node name="CSGMesh3D" type="CSGMesh3D" parent="Enviroment/StaticBody3D2" unique_id=2050468346]
+mesh = SubResource("BoxMesh_2q6dc")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Enviroment/StaticBody3D2" unique_id=1559174234]
+shape = SubResource("BoxShape3D_w7c3h")
