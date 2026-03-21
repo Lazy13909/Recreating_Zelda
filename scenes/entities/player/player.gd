@@ -16,10 +16,8 @@ extends CharacterBody3D
 var movement_input = Vector2.ZERO
 
 func _physics_process(delta: float) -> void:
-	
 	move_logic(delta)
 	jump_logic(delta)
-	
 	move_and_slide()
 
 func move_logic(delta) -> void:
@@ -34,10 +32,14 @@ func move_logic(delta) -> void:
 		vel_2d = vel_2d.limit_length(speed)
 		velocity.x = vel_2d.x
 		velocity.z = vel_2d.y
+		$GodetteSkin/AnimationPlayer.current_animation = 'Running_B'
+		var target_angle = -movement_input.angle() + PI/2
+		$GodetteSkin.rotation.y = move_toward($GodetteSkin.rotation.y, target_angle, 6.0 * delta)
 	else:
 		vel_2d = vel_2d.move_toward(Vector2.ZERO, base_speed * 4.0 * delta)
 		velocity.x = vel_2d.x
 		velocity.z = vel_2d.y
+		$GodetteSkin/AnimationPlayer.current_animation = 'Idle'
 		
 func jump_logic(delta) -> void:
 	if Input.is_action_just_pressed("jump"):

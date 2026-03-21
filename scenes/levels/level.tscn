@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://deba7potrwcq5"]
 
-[ext_resource type="PackedScene" uid="uid://o5hygn4u7djq" path="res://scenes/entities/player/player.tscn" id="1_2q6dc"]
+[ext_resource type="PackedScene" uid="uid://o5hygn4u7djq" path="res://scenes/entities/player/player.tscn" id="1_377w7"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_rd3vj"]
 sky_top_color = Color(0.2552329, 0.27922758, 0.58040255, 1)
@@ -44,9 +44,8 @@ shadow_enabled = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.53842366, 0)
 
 [node name="Entities" type="Node3D" parent="." unique_id=1765622773]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 
-[node name="player" parent="Entities" unique_id=719704501 instance=ExtResource("1_2q6dc")]
+[node name="player" parent="Entities" unique_id=719704501 instance=ExtResource("1_377w7")]
 
 [node name="Enviroment" type="Node3D" parent="." unique_id=367110898]
 
