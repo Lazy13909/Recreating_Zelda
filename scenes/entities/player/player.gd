@@ -18,13 +18,16 @@ extends CharacterBody3D
 var movement_input = Vector2.ZERO
 var speed_modifier := 1.0
 
-var defend := false:
+var _defend := false
+var defend:
 	set(value):
-		if not defend and value:
+		if not _defend and value:
 			godette_skin.defend(true)
-		if defend and not value:
+		if _defend and not value:
 			godette_skin.defend(false)
-		defend = value
+		_defend = value
+	get:
+		return _defend
 var weapon_active := false
 
 func _physics_process(delta: float) -> void:
@@ -61,6 +64,7 @@ func jump_logic(delta) -> void:
 	if is_on_floor():
 		if Input.is_action_just_pressed("jump"):
 			velocity.y = -jump_velocity
+			do_squash_and_stretch(1.2, 0.15)
 	else:
 		godette_skin.set_move_state('Jump')
 	var gravity = jump_gravity if velocity.y > 0.0 else fall_gravity
@@ -77,9 +81,10 @@ func ability_logic() -> void:
 	
 	defend = Input.is_action_pressed("block")
 	
-	if Input.is_action_just_pressed("switch_weapon") and not godette_skin.attacking:
+	if Input.is_action_just_pressed('switch_weapon') and not godette_skin.attacking:
 		weapon_active = not weapon_active
 		godette_skin.switch_weapon(weapon_active)
+		do_squash_and_stretch(1.2, 0.15)
 
 func stop_movement(start_duration: float, end_duration: float):
 	var tween = create_tween()
@@ -89,3 +94,8 @@ func stop_movement(start_duration: float, end_duration: float):
 func hit():
 	godette_skin.hit()
 	stop_movement(0.3, 0.5)
+
+func do_squash_and_stretch(value: float, duration: float = 0.1):
+	var tween = create_tween()
+	tween.tween_property(godette_skin, "squash_and_stretch", value, duration)
+	tween.tween_property(godette_skin, "squash_and_stretch", 1.0, duration * 1.8).set_ease(Tween.EASE_OUT)

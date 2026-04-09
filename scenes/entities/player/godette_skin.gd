@@ -3,8 +3,25 @@ extends Node3D
 @onready var move_state_machine = $AnimationTree.get("parameters/MovementStateMachine/playback")
 @onready var attack_state_machine = $AnimationTree.get("parameters/AttackStateMachine/playback")
 @onready var extra_animation = $AnimationTree.get_tree_root().get_node('ExtraAnimation')
+@onready var face_material: StandardMaterial3D = $Rig/Skeleton3D/Godette_Head.get_surface_override_material(0)
+
+const faces = {
+	'default': Vector3.ZERO,
+	'blink': Vector3(0.0, 0.5, 0.0)
+}
+
+var rng := RandomNumberGenerator.new()
 
 var attacking := false
+
+var _squash_and_stretch := 1.0
+var squash_and_stretch:
+	set(value):
+		_squash_and_stretch = value
+		var negative = 1.0 + (1.0 - _squash_and_stretch)
+		scale = Vector3(negative, _squash_and_stretch, negative)
+	get:
+		return _squash_and_stretch
 
 func set_move_state(state_name: String) -> void:
 	move_state_machine.travel(state_name)
@@ -42,3 +59,12 @@ func hit() -> void:
 	$AnimationTree.set("parameters/ExtraOneShot/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
 	$AnimationTree.set("parameters/AttackOneShot/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_ABORT)
 	attacking = false
+	
+func change_face(expression) -> void:
+	face_material.uv1_offset = faces[expression]
+
+func _on_blink_timer_timeout() -> void:
+	change_face('blink')
+	await get_tree().create_timer(0.2).timeout
+	change_face('default')
+	$BlinkTimer.wait_time = rng.randf_range(1.5, 3.0)
