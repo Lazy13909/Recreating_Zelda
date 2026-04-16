@@ -6,7 +6,9 @@
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_1hmtu"]
 
-[node name="player" type="CharacterBody3D" unique_id=719704501]
+[node name="player" type="CharacterBody3D" unique_id=719704501 groups=["Player"]]
+collision_layer = 2
+collision_mask = 29
 script = ExtResource("1_1hmtu")
 
 [node name="GodetteSkin" parent="." unique_id=262364032 instance=ExtResource("2_58kc7")]
