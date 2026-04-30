@@ -8,7 +8,7 @@ extends CharacterBody3D
 @onready var jump_gravity: float = ((-2.0 * jump_height) / (jump_time_to_peak * jump_time_to_peak)) * -1.0
 @onready var fall_gravity: float = ((-2.0 * jump_height) / (jump_time_to_descent * jump_time_to_descent)) * -1.0
 
-@onready var godette_skin = $GodetteSkin
+@onready var skin = $GodetteSkin
 @onready var camera_controller = $CameraController/Camera3D
 
 @export var base_speed := 4.0
@@ -22,20 +22,25 @@ var _defend := false
 var defend:
 	set(value):
 		if not _defend and value:
-			godette_skin.defend(true)
+			skin.defend(true)
 		if _defend and not value:
-			godette_skin.defend(false)
+			skin.defend(false)
 		_defend = value
 	get:
 		return _defend
-var weapon_active := false
+var weapon_active := true
+
+signal cast_spell(type: String, pos: Vector3, direction: Vector2, size: float)
+
+func _ready() -> void:
+	skin.switch_weapon(weapon_active)
 
 func _physics_process(delta: float) -> void:
 	move_logic(delta)
 	jump_logic(delta)
 	ability_logic()
 	if Input.is_action_just_pressed("ui_accept"):
-		godette_skin.hit()
+		skin.hit()
 	move_and_slide()
 
 func move_logic(delta) -> void:
@@ -51,14 +56,14 @@ func move_logic(delta) -> void:
 		vel_2d = vel_2d.limit_length(speed) * speed_modifier
 		velocity.x = vel_2d.x
 		velocity.z = vel_2d.y
-		godette_skin.set_move_state('Running')
+		skin.set_move_state('Running')
 		var target_angle = -movement_input.angle() + PI/2
-		godette_skin.rotation.y = rotate_toward(godette_skin.rotation.y, target_angle, 6.0 * delta)
+		skin.rotation.y = rotate_toward(skin.rotation.y, target_angle, 6.0 * delta)
 	else:
 		vel_2d = vel_2d.move_toward(Vector2.ZERO, base_speed * 4.0 * delta)
 		velocity.x = vel_2d.x
 		velocity.z = vel_2d.y
-		godette_skin.set_move_state('Idle')
+		skin.set_move_state('Idle')
 		
 func jump_logic(delta) -> void:
 	if is_on_floor():
@@ -66,24 +71,24 @@ func jump_logic(delta) -> void:
 			velocity.y = -jump_velocity
 			do_squash_and_stretch(1.2, 0.15)
 	else:
-		godette_skin.set_move_state('Jump')
+		skin.set_move_state('Jump')
 	var gravity = jump_gravity if velocity.y > 0.0 else fall_gravity
 	velocity.y -= gravity * delta
 
 func ability_logic() -> void: 
 	if Input.is_action_just_pressed("ability"):
 		if weapon_active:
-			godette_skin.attack()
+			skin.attack()
 			stop_movement(0.3, 0.5)
 		else:
-			godette_skin.cast_spell()
+			skin.cast_spell()
 			stop_movement(0.3, 0.8)
 	
 	defend = Input.is_action_pressed("block")
 	
-	if Input.is_action_just_pressed('switch_weapon') and not godette_skin.attacking:
+	if Input.is_action_just_pressed('switch_weapon') and not skin.attacking:
 		weapon_active = not weapon_active
-		godette_skin.switch_weapon(weapon_active)
+		skin.switch_weapon(weapon_active)
 		do_squash_and_stretch(1.2, 0.15)
 
 func stop_movement(start_duration: float, end_duration: float):
@@ -92,10 +97,13 @@ func stop_movement(start_duration: float, end_duration: float):
 	tween.tween_property(self, "speed_modifier", 1.0, end_duration)
 	
 func hit():
-	godette_skin.hit()
+	skin.hit()
 	stop_movement(0.3, 0.5)
 
 func do_squash_and_stretch(value: float, duration: float = 0.1):
 	var tween = create_tween()
-	tween.tween_property(godette_skin, "squash_and_stretch", value, duration)
-	tween.tween_property(godette_skin, "squash_and_stretch", 1.0, duration * 1.8).set_ease(Tween.EASE_OUT)
+	tween.tween_property(skin, "squash_and_stretch", value, duration)
+	tween.tween_property(skin, "squash_and_stretch", 1.0, duration * 1.8).set_ease(Tween.EASE_OUT)
+
+func shoot_fireball(pos: Vector3) -> void:
+	cast_spell.emit("fireball", pos, Vector2(0, 1), 1.0)

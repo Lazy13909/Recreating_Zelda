@@ -1,7 +1,10 @@
 [gd_scene format=3 uid="uid://deba7potrwcq5"]
 
 [ext_resource type="PackedScene" uid="uid://o5hygn4u7djq" path="res://scenes/entities/player/player.tscn" id="1_377w7"]
+[ext_resource type="Script" uid="uid://y76ha7uv5k2x" path="res://scenes/levels/level.gd" id="1_urvlt"]
+[ext_resource type="PackedScene" uid="uid://brv2ykd88bmas" path="res://scenes/entities/enemies/skeleton_warrior.tscn" id="3_urvlt"]
 [ext_resource type="PackedScene" uid="uid://c1j2p3qvgriij" path="res://scenes/entities/enemies/skeleton_mage.tscn" id="3_xb4v1"]
+[ext_resource type="PackedScene" uid="uid://c0lxomffvvwiu" path="res://scenes/entities/enemies/boss.tscn" id="4_xb4v1"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_rd3vj"]
 sky_top_color = Color(0.2552329, 0.27922758, 0.58040255, 1)
@@ -31,6 +34,7 @@ size = Vector3(1, 5, 5)
 size = Vector3(1, 5, 5)
 
 [node name="Level" type="Node3D" unique_id=502659029]
+script = ExtResource("1_urvlt")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=11954523]
 environment = SubResource("Environment_w7c3h")
@@ -50,8 +54,13 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.53842366, 0)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.721489, 0, 0)
 
 [node name="SkeletonMage" parent="Entities" unique_id=912187997 instance=ExtResource("3_xb4v1")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3.9562616)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 9.346767)
 attack_radius = 10.0
+
+[node name="SkeletonWarrior" parent="Entities" unique_id=1439480861 instance=ExtResource("3_urvlt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19.218555, 0, 0.27198792)
+
+[node name="boss" parent="Entities" unique_id=1652110113 instance=ExtResource("4_xb4v1")]
 
 [node name="Enviroment" type="Node3D" parent="." unique_id=367110898]
 
@@ -75,3 +84,7 @@ mesh = SubResource("BoxMesh_2q6dc")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Enviroment/StaticBody3D2" unique_id=1559174234]
 shape = SubResource("BoxShape3D_w7c3h")
+
+[node name="Projectiles" type="Node3D" parent="." unique_id=843086380]
+
+[connection signal="cast_spell" from="Entities/player" to="." method="_on_player_cast_spell"]

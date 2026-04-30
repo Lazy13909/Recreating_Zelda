@@ -2,17 +2,14 @@
 
 [ext_resource type="PackedScene" uid="uid://bctcp65yp8t3f" path="res://graphics/characters/godette/godette.glb" id="1_ajt42"]
 [ext_resource type="Script" uid="uid://de5nw0ho7h5k" path="res://scenes/entities/player/godette_skin.gd" id="2_2vk48"]
-[ext_resource type="PackedScene" uid="uid://cp757r6txb0j6" path="res://graphics/weapons/sword_1handed.gltf" id="3_asomj"]
 [ext_resource type="Texture2D" uid="uid://bgh8x0rsl78s5" path="res://graphics/characters/godette/godette_godette_faces.png" id="3_w65gf"]
 [ext_resource type="Texture2D" uid="uid://cbf5176yt1e2d" path="res://graphics/weapons/barbarian_texture.png" id="4_xjw0u"]
 [ext_resource type="PackedScene" uid="uid://dydnnq3ww2uyk" path="res://graphics/weapons/shield.gltf.glb" id="5_m6bsd"]
 [ext_resource type="PackedScene" uid="uid://02ix7c6cfe1u" path="res://graphics/weapons/wand.gltf" id="5_w65gf"]
+[ext_resource type="PackedScene" uid="uid://ddb4tbjcjixlb" path="res://scenes/weapons/sword.tscn" id="6_w65gf"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_p240l"]
 albedo_texture = ExtResource("3_w65gf")
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_w65gf"]
-albedo_texture = ExtResource("4_xjw0u")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pg4gy"]
 albedo_texture = ExtResource("4_xjw0u")
@@ -108,7 +105,6 @@ filter_enabled = true
 filters = ["Rig/Skeleton3D:chest", "Rig/Skeleton3D:hand.l", "Rig/Skeleton3D:hand.r", "Rig/Skeleton3D:handslot.l", "Rig/Skeleton3D:handslot.r", "Rig/Skeleton3D:head", "Rig/Skeleton3D:hips", "Rig/Skeleton3D:lowerarm.l", "Rig/Skeleton3D:lowerarm.r", "Rig/Skeleton3D:root", "Rig/Skeleton3D:spine", "Rig/Skeleton3D:upperarm.l", "Rig/Skeleton3D:upperarm.r", "Rig/Skeleton3D:wrist.l", "Rig/Skeleton3D:wrist.r"]
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_la81o"]
-graph_offset = Vector2(-599.0251, 81.68999)
 nodes/output/position = Vector2(1040, 100)
 nodes/MovementStateMachine/node = SubResource("AnimationNodeStateMachine_lv6f6")
 nodes/MovementStateMachine/position = Vector2(-400, 80)
@@ -130,7 +126,7 @@ node_connections = [&"output", 0, &"ExtraOneShot", &"AttackOneShot", 0, &"Shield
 script = ExtResource("2_2vk48")
 
 [node name="Skeleton3D" parent="Rig" parent_id_path=PackedInt32Array(1547869406) index="0" unique_id=1300388287]
-bones/1/position = Vector3(0, 0.37535438, 0)
+bones/1/position = Vector3(0, 0.39206383, 0)
 bones/1/rotation = Quaternion(-1.11122625e-10, 0.043157753, 2.5724098e-09, 0.9990683)
 bones/1/scale = Vector3(0.99999994, 1, 0.99999994)
 bones/2/rotation = Quaternion(-6.938893e-18, 7.105427e-15, 4.9303798e-32, 1)
@@ -138,46 +134,46 @@ bones/2/scale = Vector3(1.0000001, 1, 1.0000001)
 bones/3/rotation = Quaternion(8.271806e-25, 3.7252903e-09, -2.75506e-40, 1)
 bones/3/scale = Vector3(1, 0.9999999, 1)
 bones/4/position = Vector3(0.21200736, 0.13413203, 7.9299625e-08)
-bones/4/rotation = Quaternion(-0.55410606, -0.057162367, -0.6376214, 0.5321071)
+bones/4/rotation = Quaternion(-0.5599063, -0.060880348, -0.6439745, 0.5177794)
 bones/4/scale = Vector3(0.9999991, 0.9999986, 0.9999996)
-bones/5/rotation = Quaternion(5.867e-09, -5.6785446e-08, -0.51379853, 0.8579109)
+bones/5/rotation = Quaternion(3.6549825e-08, -4.8830096e-08, -0.49471933, 0.8690529)
 bones/5/scale = Vector3(1.0000006, 0.99999946, 1)
 bones/6/rotation = Quaternion(1.44633185e-08, 1.2667185e-08, 0.026658092, 0.99964464)
 bones/6/scale = Vector3(0.99999994, 1, 1)
-bones/7/rotation = Quaternion(-0.32187665, -0.33555037, 0.15040497, 0.8724562)
+bones/7/rotation = Quaternion(-0.32106528, -0.32531866, 0.14572594, 0.8774103)
 bones/7/scale = Vector3(0.9999998, 0.99999976, 1.0000004)
 bones/8/position = Vector3(8.348433e-10, 0.096125185, -0.057500035)
-bones/8/rotation = Quaternion(0.00061267236, 0.00061266153, -0.7048543, 0.7093517)
+bones/8/rotation = Quaternion(-3.6586003e-09, 6.8781096e-09, -0.7071068, 0.7071067)
 bones/8/scale = Vector3(1, 1.0000001, 1.0000001)
 bones/9/position = Vector3(-0.21200737, 0.13413203, 8.6813984e-08)
-bones/9/rotation = Quaternion(-0.6125209, 0.07752495, 0.6130238, 0.49296042)
+bones/9/rotation = Quaternion(-0.6182439, 0.08072865, 0.61801153, 0.47887278)
 bones/9/scale = Vector3(0.99999905, 0.9999985, 0.9999996)
-bones/10/rotation = Quaternion(3.300692e-08, 5.6672786e-08, 0.5362402, 0.84406537)
+bones/10/rotation = Quaternion(2.0985292e-08, 5.1285536e-08, 0.5179393, 0.85541743)
 bones/10/scale = Vector3(1.0000008, 0.9999997, 0.9999999)
 bones/11/rotation = Quaternion(-4.946142e-10, -1.4597426e-08, -0.026658095, 0.99964464)
 bones/11/scale = Vector3(1.0000001, 1, 1)
-bones/12/rotation = Quaternion(-0.32073644, 0.3116719, -0.23248991, 0.86367667)
+bones/12/rotation = Quaternion(-0.31929126, 0.30052418, -0.22734971, 0.8695116)
 bones/12/scale = Vector3(0.9999998, 0.9999999, 1.0000002)
 bones/13/position = Vector3(-1.5735983e-08, 0.096125126, -0.057499975)
-bones/13/rotation = Quaternion(0.0019615067, 0.002310364, 0.7050677, 0.70913357)
+bones/13/rotation = Quaternion(-1.0244432e-09, -4.24391e-09, 0.7071068, 0.7071067)
 bones/13/scale = Vector3(1, 1.0000001, 1.0000001)
 bones/14/rotation = Quaternion(-5.8060785e-11, -0.031341746, -1.880125e-09, 0.99950874)
 bones/14/scale = Vector3(1, 0.99999994, 1)
 bones/15/position = Vector3(0.17094508, 0.1135872, 1.5994091e-08)
-bones/15/rotation = Quaternion(0.9909258, 0.0833116, 0.077713124, 0.071316)
+bones/15/rotation = Quaternion(0.99371517, 0.08371457, 0.07350378, 0.0109185325)
 bones/15/scale = Vector3(0.99999994, 0.9999997, 1.0000008)
-bones/16/rotation = Quaternion(0.35343194, 6.564583e-08, -2.5327125e-07, 0.9354603)
+bones/16/rotation = Quaternion(0.19560215, 6.262283e-08, -1.3223931e-07, 0.9806833)
 bones/16/scale = Vector3(1.0000004, 0.9999999, 0.99999994)
-bones/17/rotation = Quaternion(-0.59969985, -0.2032235, 0.06924516, 0.7708862)
+bones/17/rotation = Quaternion(-0.517564, -0.2094967, 0.043654874, 0.82845217)
 bones/17/scale = Vector3(0.99999964, 1.0000006, 0.99999946)
-bones/18/rotation = Quaternion(-2.2432162e-06, 0.92015594, -0.39155215, 5.9089143e-07)
+bones/18/rotation = Quaternion(0.00011178441, 0.92025787, -0.39131266, -2.5241658e-05)
 bones/18/scale = Vector3(0.99999994, 0.99999774, 1.0000024)
 bones/19/position = Vector3(-0.17094508, 0.11358732, 1.5575491e-08)
-bones/19/rotation = Quaternion(0.9930835, -0.032393575, 0.030203147, 0.10873696)
+bones/19/rotation = Quaternion(0.99732214, -0.029457362, 0.031529266, 0.059048314)
 bones/19/scale = Vector3(0.9999999, 0.99999976, 1.0000008)
-bones/20/rotation = Quaternion(0.40216035, -6.0116e-08, 2.8071682e-07, 0.91556925)
+bones/20/rotation = Quaternion(0.2740081, -6.38135e-08, 1.9276132e-07, 0.9617275)
 bones/20/scale = Vector3(0.99999994, 0.99999976, 0.99999994)
-bones/21/rotation = Quaternion(-0.6275013, 0.113131806, -0.019846663, 0.770097)
+bones/21/rotation = Quaternion(-0.5590394, 0.11451276, -0.008627633, 0.82115)
 bones/21/scale = Vector3(0.99999976, 1.0000006, 0.9999992)
 bones/22/rotation = Quaternion(-8.934892e-05, 0.9202217, -0.3913977, 2.0290998e-05)
 bones/22/scale = Vector3(1.0000002, 0.9999979, 1.0000024)
@@ -208,10 +204,10 @@ bones/35/scale = Vector3(0.99999994, 1, 0.99999994)
 bones/36/rotation = Quaternion(1.00614094e-16, -6.740982e-17, -1.5741623e-08, 1)
 bones/36/scale = Vector3(1.0000001, 1, 1)
 bones/37/rotation = Quaternion(-0.7071068, -7.279511e-08, -7.279509e-08, 0.7071068)
-bones/38/position = Vector3(0.52084064, 0.77963704, -0.057637352)
+bones/38/position = Vector3(0.52084064, 0.78831226, -0.05763735)
 bones/38/rotation = Quaternion(0.7946267, -1.1175871e-07, 0.6070983, -5.9604645e-08)
 bones/39/rotation = Quaternion(-0.7071068, -7.279511e-08, -7.279509e-08, 0.7071068)
-bones/40/position = Vector3(-0.5108437, 0.7796369, 0.059736915)
+bones/40/position = Vector3(-0.5108437, 0.78831214, 0.059736922)
 bones/40/rotation = Quaternion(-0.7582528, -1.527369e-07, 0.65196073, -1.1175871e-08)
 bones/40/scale = Vector3(1, 1.0000001, 1)
 
@@ -219,23 +215,23 @@ bones/40/scale = Vector3(1, 1.0000001, 1)
 surface_material_override/0 = SubResource("StandardMaterial3D_p240l")
 
 [node name="RightHandSlot" type="BoneAttachment3D" parent="Rig/Skeleton3D" index="6" unique_id=1463047517]
-transform = Transform3D(0.0013667303, -0.15586038, -0.98777777, -0.99998224, -0.005751004, -0.0004753917, -0.0056070364, 0.9877619, -0.1558663, -0.49051857, 0.63286746, 0.107737586)
+transform = Transform3D(6.034784e-07, -0.14989421, -0.9887016, -0.99999875, 2.3841845e-07, 3.4355335e-08, -2.7025024e-07, 0.9887014, -0.14989473, -0.49106073, 0.64102995, 0.1065955)
 bone_name = "handslot.r"
 bone_idx = 13
 
-[node name="sword_1handed2" parent="Rig/Skeleton3D/RightHandSlot" index="0" unique_id=333425561 instance=ExtResource("3_asomj")]
-visible = false
-
-[node name="sword_1handed" parent="Rig/Skeleton3D/RightHandSlot/sword_1handed2" index="0" unique_id=546034524]
-surface_material_override/0 = SubResource("StandardMaterial3D_w65gf")
-
-[node name="wand2" parent="Rig/Skeleton3D/RightHandSlot" index="1" unique_id=306122777 instance=ExtResource("5_w65gf")]
+[node name="wand2" parent="Rig/Skeleton3D/RightHandSlot" index="0" unique_id=306122777 instance=ExtResource("5_w65gf")]
 
 [node name="wand" parent="Rig/Skeleton3D/RightHandSlot/wand2" index="0" unique_id=1895211189]
 material_override = SubResource("StandardMaterial3D_pg4gy")
 
+[node name="Marker3D" type="Marker3D" parent="Rig/Skeleton3D/RightHandSlot/wand2/wand" index="0" unique_id=1638888992]
+transform = Transform3D(0.99999297, 0.0038524193, 0.00032289932, -0.0038509388, 0.99998456, -0.0040517896, -0.00033838168, 0.0040502846, 0.9999921, -0.03390515, 0.691012, -0.0009121299)
+
+[node name="Sword" parent="Rig/Skeleton3D/RightHandSlot" index="1" unique_id=1668323792 instance=ExtResource("6_w65gf")]
+visible = false
+
 [node name="LeftHandSlot" type="BoneAttachment3D" parent="Rig/Skeleton3D" index="7" unique_id=1945116468]
-transform = Transform3D(3.0954834e-07, 0.26286304, 0.9648329, 0.9999768, -0.006360046, 0.0017335278, 0.006592482, 0.9648114, -0.26285768, 0.50747806, 0.62832785, -0.017381955)
+transform = Transform3D(2.6229458e-07, 0.26286277, 0.9648328, 0.99999857, 2.9802164e-08, 6.0059955e-07, 4.3752277e-07, 0.9648324, -0.2628633, 0.5077679, 0.63670534, -0.018521108)
 bone_name = "handslot.l"
 bone_idx = 8
 
@@ -266,5 +262,4 @@ autostart = true
 
 [connection signal="timeout" from="BlinkTimer" to="." method="_on_blink_timer_timeout"]
 
-[editable path="Rig/Skeleton3D/RightHandSlot/sword_1handed2"]
 [editable path="Rig/Skeleton3D/RightHandSlot/wand2"]

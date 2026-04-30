@@ -9,6 +9,11 @@ const simple_attacks = {
 @onready var spin_speed := 6
 var spinning := false
 
+var can_damage_toggle := false
+
+func _process(_delta: float) -> void:
+	attack_logic()
+
 func _physics_process(delta: float) -> void:
 	move_to_player(delta)
 
@@ -41,7 +46,7 @@ func melee_attack_animation() -> void:
 	attack_animation.animation = simple_attacks['slice' if rng.randi() % 2 else 'spin']
 	$AnimationTree.set("parameters/AttackOneShot/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
 
-func _on_area_3d_body_entered(body: Node3D) -> void:
+func _on_area_3d_body_entered(_body: Node3D) -> void:
 	if spinning:
 		await get_tree().create_timer(rng.randf_range(1.0, 2.0)).timeout
 		var tween = create_tween()
@@ -49,3 +54,16 @@ func _on_area_3d_body_entered(body: Node3D) -> void:
 		tween.tween_method(_spin_transition, 1.0, 0.0, 0.3)
 		spinning = true
 		$Timers/AttackTimer.start()
+		
+func hit() -> void: 
+	if not $Timers/InvulTimer.time_left:
+		$Timers/InvulTimer.start()
+
+func can_damage(value: bool) -> void:
+	can_damage_toggle = value
+	
+func attack_logic() -> void:
+	if can_damage_toggle:
+		var collider = $Skin/Rig/Skeleton3D/Nagonford_Axe/Nagonford_Axe/RayCast3D.get_collider()
+		if collider and 'hit' in collider:
+			collider.hit()
