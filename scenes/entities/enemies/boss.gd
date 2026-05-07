@@ -25,7 +25,8 @@ func _on_attack_timer_timeout() -> void:
 		if rng.randi() % 2:
 			range_attack_animation()
 		else:
-			spin_attack_animtaion()
+			range_attack_animation()
+			#spin_attack_animtaion()
 		
 func spin_attack_animtaion():
 	var tween = create_tween()
@@ -67,3 +68,9 @@ func attack_logic() -> void:
 		var collider = $Skin/Rig/Skeleton3D/Nagonford_Axe/Nagonford_Axe/RayCast3D.get_collider()
 		if collider and 'hit' in collider:
 			collider.hit()
+
+func shoot_fireball() -> void:
+	var direction = (player.position - position).normalized()
+	var dir_2d = Vector2(direction.x, direction.z)
+	var pos = $Skin/Rig/Skeleton3D/Nagonford_Axe/Nagonford_Axe/Marker3D.global_position
+	cast_spell.emit('fireball', pos, dir_2d, 3.0)

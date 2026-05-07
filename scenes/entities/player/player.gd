@@ -16,6 +16,7 @@ extends CharacterBody3D
 @export var defend_speed := 2.0
 
 var movement_input = Vector2.ZERO
+var last_movement_input := Vector2(0, 1)
 var speed_modifier := 1.0
 
 var _defend := false
@@ -64,7 +65,10 @@ func move_logic(delta) -> void:
 		velocity.x = vel_2d.x
 		velocity.z = vel_2d.y
 		skin.set_move_state('Idle')
-		
+	
+	if movement_input:
+		last_movement_input = movement_input.normalized()
+	
 func jump_logic(delta) -> void:
 	if is_on_floor():
 		if Input.is_action_just_pressed("jump"):
@@ -106,4 +110,4 @@ func do_squash_and_stretch(value: float, duration: float = 0.1):
 	tween.tween_property(skin, "squash_and_stretch", 1.0, duration * 1.8).set_ease(Tween.EASE_OUT)
 
 func shoot_fireball(pos: Vector3) -> void:
-	cast_spell.emit("fireball", pos, Vector2(0, 1), 1.0)
+	cast_spell.emit("fireball", pos, last_movement_input, 1.0)
