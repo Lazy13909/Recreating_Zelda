@@ -1,0 +1,25 @@
+[gd_scene format=3 uid="uid://by2ji4xs3gbr8"]
+
+[ext_resource type="Script" uid="uid://cmc8vn0724lax" path="res://scenes/entities/player/ui.gd" id="1_t1uvp"]
+
+[node name="UI" type="Control" unique_id=520650430]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_t1uvp")
+
+[node name="Hearts" type="Control" parent="." unique_id=539188777]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="MarginContainer" type="MarginContainer" parent="Hearts" unique_id=1262066955]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Hearts/MarginContainer" unique_id=897848366]
+layout_mode = 2

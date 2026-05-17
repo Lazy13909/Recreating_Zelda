@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://bbxhuuf3flj3e"]
 
-[ext_resource type="Script" uid="uid://bh3pm1bk87vss" path="res://scenes/fireball.gd" id="1_3s14c"]
+[ext_resource type="Script" uid="uid://bh3pm1bk87vss" path="res://scenes/vfx/fireball.gd" id="1_3s14c"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_gxhll"]
 

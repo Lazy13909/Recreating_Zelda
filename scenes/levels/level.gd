@@ -1,6 +1,6 @@
 extends Node3D
 
-var fireball_scene: PackedScene = preload("res://scenes/fireball.tscn")
+var fireball_scene: PackedScene = preload("res://scenes/vfx/fireball.tscn")
 
 func _ready() -> void:
 	for entity in $Entities.get_children():

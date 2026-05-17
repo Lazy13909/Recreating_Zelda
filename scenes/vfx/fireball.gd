@@ -16,4 +16,4 @@ func _on_body_entered(body: Node3D) -> void:
 
 func setup(size: float) -> void:
 	var tween = create_tween()
-	tween.tween_property(self, "scale", size, 0.5)
+	tween.tween_property(self, "scale", Vector3.ONE * size, 0.5)
