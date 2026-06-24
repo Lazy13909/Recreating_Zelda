@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cuggtaujvrm1b"
-path.s3tc="res://.godot/imported/table_dungeon_texture.png-6d04a63807b5794e31a14f87f1495814.s3tc.ctex"
+path.bptc="res://.godot/imported/table_dungeon_texture.png-6d04a63807b5794e31a14f87f1495814.bptc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -15,12 +15,12 @@ generator_parameters={
 [deps]
 
 source_file="res://graphics/environment/dungeon objects/table_dungeon_texture.png"
-dest_files=["res://.godot/imported/table_dungeon_texture.png-6d04a63807b5794e31a14f87f1495814.s3tc.ctex"]
+dest_files=["res://.godot/imported/table_dungeon_texture.png-6d04a63807b5794e31a14f87f1495814.bptc.ctex"]
 
 [params]
 
 compress/mode=2
-compress/high_quality=false
+compress/high_quality=true
 compress/lossy_quality=0.7
 compress/uastc_level=0
 compress/rdo_quality_loss=0.0

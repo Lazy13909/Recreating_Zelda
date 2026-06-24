@@ -12,7 +12,7 @@ script = ExtResource("1_58ehi")
 
 [node name="sword_1handed2" parent="." unique_id=333425561 instance=ExtResource("1_3pnln")]
 
-[node name="sword_1handed" parent="sword_1handed2" index="0" unique_id=546034524]
+[node name="sword_1handed" parent="sword_1handed2" index="0" unique_id=2053276672]
 surface_material_override/0 = SubResource("StandardMaterial3D_gwb47")
 
 [node name="RayCast3D" type="RayCast3D" parent="." unique_id=1678118141]

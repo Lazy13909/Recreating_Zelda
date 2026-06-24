@@ -1,0 +1,31 @@
+[gd_scene format=3 uid="uid://b37o38bi57ibt"]
+
+[ext_resource type="ArrayMesh" uid="uid://k1syv00tyig8" path="res://graphics/vfx/grass_blade.obj" id="1_7qk2s"]
+[ext_resource type="Shader" uid="uid://iucwsi2bo8yx" path="res://scenes/vfx/grass_blade.gdshader" id="1_gwgjm"]
+
+[sub_resource type="Curve" id="Curve_gwgjm"]
+_data = [Vector2(0, 0.8969164), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_kkhd4"]
+curve = SubResource("Curve_gwgjm")
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_ogocy"]
+fractal_octaves = 1
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_draid"]
+noise = SubResource("FastNoiseLite_ogocy")
+seamless = true
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_kkhd4"]
+render_priority = 0
+shader = ExtResource("1_gwgjm")
+shader_parameter/color = Color(0, 0.77382356, 0, 1)
+shader_parameter/shadow_color = Color(0.288518, 0.28851798, 0.28851798, 1)
+shader_parameter/curve_sampler = SubResource("CurveTexture_kkhd4")
+shader_parameter/wind_sampler = SubResource("NoiseTexture2D_draid")
+shader_parameter/wind_strength = 0.4
+
+[node name="GraseBlade" type="MeshInstance3D" unique_id=1492600762]
+material_override = SubResource("ShaderMaterial_kkhd4")
+mesh = ExtResource("1_7qk2s")

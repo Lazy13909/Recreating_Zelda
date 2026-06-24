@@ -42,7 +42,6 @@ states/walk/position = Vector2(525, 100)
 transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_e6sfi"), "idle", "walk", SubResource("AnimationNodeStateMachineTransition_bm06v"), "walk", "idle", SubResource("AnimationNodeStateMachineTransition_7s2mm")]
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_xlmpd"]
-graph_offset = Vector2(-140, 44.978973)
 nodes/output/position = Vector2(420, 120)
 nodes/MoveStateMachine/node = SubResource("AnimationNodeStateMachine_2hjk5")
 nodes/MoveStateMachine/position = Vector2(-140, 80)
@@ -57,7 +56,7 @@ script = ExtResource("2_8053y")
 
 [node name="Skin" parent="." index="0" unique_id=1891171665 instance=ExtResource("2_rokla")]
 
-[node name="Skeleton3D" parent="Skin/Rig" parent_id_path=PackedInt32Array(1891171665, 2071018143) index="0" unique_id=1197090921]
+[node name="Skeleton3D" parent="Skin/Rig" parent_id_path=PackedInt32Array(1891171665, 531238975) index="0" unique_id=519047314]
 bones/1/position = Vector3(0.008410764, 0.36440754, 1.2184853e-10)
 bones/2/rotation = Quaternion(-0.060599465, -0.13028215, -0.007978079, 0.9895912)
 bones/2/scale = Vector3(1, 0.99999994, 1)
@@ -120,7 +119,7 @@ bones/40/rotation = Quaternion(-0.7071068, -7.279511e-08, -7.279509e-08, 0.70710
 bones/41/position = Vector3(-0.35685095, 0.8183326, 0.28914508)
 bones/41/rotation = Quaternion(-0.30040517, 0.22436436, 0.91506565, -0.14856732)
 
-[node name="Skeleton_Mage_Hat" parent="Skin/Rig/Skeleton3D" index="0" unique_id=442282753]
+[node name="Skeleton_Mage_Hat" parent="Skin/Rig/Skeleton3D" index="0" unique_id=727111614]
 transform = Transform3D(0.99985313, -0.017068312, 0.0015096813, 0.01713144, 0.99754, -0.06797257, -0.00034585595, 0.06798854, 0.9976862, 0.019765086, 1.738028, -0.024477348)
 
 [node name="BoneAttachment3D" type="BoneAttachment3D" parent="Skin/Rig/Skeleton3D" index="9" unique_id=1758222014]
@@ -130,7 +129,7 @@ bone_idx = 13
 
 [node name="wand2" parent="Skin/Rig/Skeleton3D/BoneAttachment3D" index="0" unique_id=306122777 instance=ExtResource("4_k7qjj")]
 
-[node name="wand" parent="Skin/Rig/Skeleton3D/BoneAttachment3D/wand2" index="0" unique_id=1895211189]
+[node name="wand" parent="Skin/Rig/Skeleton3D/BoneAttachment3D/wand2" index="0" unique_id=182450900]
 surface_material_override/0 = SubResource("StandardMaterial3D_s6ily")
 
 [node name="Marker3D" type="Marker3D" parent="Skin/Rig/Skeleton3D/BoneAttachment3D/wand2" index="1" unique_id=1749949442]

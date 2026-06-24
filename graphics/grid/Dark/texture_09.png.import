@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://fumrtrsuwiyf"
-path.s3tc="res://.godot/imported/texture_09.png-bb3b49282438a18601271e657f37873c.s3tc.ctex"
+path.bptc="res://.godot/imported/texture_09.png-bb3b49282438a18601271e657f37873c.bptc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -12,12 +12,12 @@ metadata={
 [deps]
 
 source_file="res://graphics/grid/Dark/texture_09.png"
-dest_files=["res://.godot/imported/texture_09.png-bb3b49282438a18601271e657f37873c.s3tc.ctex"]
+dest_files=["res://.godot/imported/texture_09.png-bb3b49282438a18601271e657f37873c.bptc.ctex"]
 
 [params]
 
 compress/mode=2
-compress/high_quality=false
+compress/high_quality=true
 compress/lossy_quality=0.7
 compress/uastc_level=0
 compress/rdo_quality_loss=0.0

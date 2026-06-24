@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://ddc11j1qa4e0a"
-path.s3tc="res://.godot/imported/pillar_dungeon_texture.png-9f83a9986721f6b9c0e8eebbc8a411f3.s3tc.ctex"
+path.bptc="res://.godot/imported/pillar_dungeon_texture.png-9f83a9986721f6b9c0e8eebbc8a411f3.bptc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -15,12 +15,12 @@ generator_parameters={
 [deps]
 
 source_file="res://graphics/environment/dungeon objects/pillar_dungeon_texture.png"
-dest_files=["res://.godot/imported/pillar_dungeon_texture.png-9f83a9986721f6b9c0e8eebbc8a411f3.s3tc.ctex"]
+dest_files=["res://.godot/imported/pillar_dungeon_texture.png-9f83a9986721f6b9c0e8eebbc8a411f3.bptc.ctex"]
 
 [params]
 
 compress/mode=2
-compress/high_quality=false
+compress/high_quality=true
 compress/lossy_quality=0.7
 compress/uastc_level=0
 compress/rdo_quality_loss=0.0

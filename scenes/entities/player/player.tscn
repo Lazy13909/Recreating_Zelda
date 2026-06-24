@@ -4,16 +4,30 @@
 [ext_resource type="PackedScene" uid="uid://dwdme167gyc4n" path="res://scenes/entities/player/godette_skin.tscn" id="2_58kc7"]
 [ext_resource type="PackedScene" uid="uid://bcxfhimkojg54" path="res://scenes/entities/player/camera_controller.tscn" id="2_635qg"]
 [ext_resource type="PackedScene" uid="uid://by2ji4xs3gbr8" path="res://scenes/entities/player/ui.tscn" id="4_nh4ur"]
+[ext_resource type="AudioStream" uid="uid://brog30lvnpr6b" path="res://audio/sword sound.wav" id="5_8akj5"]
+[ext_resource type="AudioStream" uid="uid://q016xqptbrb" path="res://audio/steps.mp3" id="6_bj7e2"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_1hmtu"]
 height = 2.4960938
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_nh4ur"]
+emission_shape = 1
+emission_sphere_radius = 0.6
+gravity = Vector3(0, 1, 0)
+scale_min = 0.099999994
+scale_max = 0.29999998
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bjvvg"]
+albedo_color = Color(0.6627451, 0.6627451, 0.6627451, 1)
+metallic_specular = 1.0
+
+[sub_resource type="SphereMesh" id="SphereMesh_8akj5"]
+material = SubResource("StandardMaterial3D_bjvvg")
 
 [node name="player" type="CharacterBody3D" unique_id=719704501 groups=["Player"]]
 collision_layer = 2
 collision_mask = 29
 script = ExtResource("1_1hmtu")
-
-[node name="GodetteSkin" parent="." unique_id=262364032 instance=ExtResource("2_58kc7")]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=593125420]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2480469, 0)
@@ -22,6 +36,8 @@ shape = SubResource("CapsuleShape3D_1hmtu")
 [node name="CameraController" parent="." unique_id=20029483 instance=ExtResource("2_635qg")]
 transform = Transform3D(1, 0, 0, 0, 0.90630776, 0.42261827, 0, -0.42261827, 0.90630776, 0, 0.4, 0)
 
+[node name="GodetteSkin" parent="." unique_id=262364032 instance=ExtResource("2_58kc7")]
+
 [node name="UI" parent="." unique_id=520650430 instance=ExtResource("4_nh4ur")]
 
 [node name="Timers" type="Timer" parent="." unique_id=373917082]
@@ -29,3 +45,28 @@ transform = Transform3D(1, 0, 0, 0, 0.90630776, 0.42261827, 0, -0.42261827, 0.90
 [node name="InvulTimer" type="Timer" parent="Timers" unique_id=613360006]
 wait_time = 0.8
 one_shot = true
+
+[node name="EnergyRecoverTimer" type="Timer" parent="Timers" unique_id=522355977]
+wait_time = 0.2
+autostart = true
+
+[node name="StaminaRecoverTimer" type="Timer" parent="Timers" unique_id=1635821779]
+wait_time = 0.2
+autostart = true
+
+[node name="RunParticles" type="GPUParticles3D" parent="." unique_id=1078222628]
+transparency = 0.25
+cast_shadow = 0
+process_material = SubResource("ParticleProcessMaterial_nh4ur")
+draw_pass_1 = SubResource("SphereMesh_8akj5")
+
+[node name="Sounds" type="Node3D" parent="." unique_id=1373358257]
+
+[node name="SwordSound" type="AudioStreamPlayer3D" parent="Sounds" unique_id=402131009]
+stream = ExtResource("5_8akj5")
+
+[node name="StepSound" type="AudioStreamPlayer3D" parent="Sounds" unique_id=1818204103]
+stream = ExtResource("6_bj7e2")
+
+[connection signal="timeout" from="Timers/EnergyRecoverTimer" to="." method="_on_energy_recover_timer_timeout"]
+[connection signal="timeout" from="Timers/StaminaRecoverTimer" to="." method="_on_stamina_recover_timer_timeout"]

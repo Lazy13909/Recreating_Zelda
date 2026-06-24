@@ -15,5 +15,10 @@ func _on_body_entered(body: Node3D) -> void:
 		queue_free()
 
 func setup(size: float) -> void:
-	var tween = create_tween()
+	$FireballMesh.rotation.y = -(direction.angle() + PI/2) + PI
+	var tween: Tween = create_tween()
 	tween.tween_property(self, "scale", Vector3.ONE * size, 0.5)
+
+
+func _on_timer_timeout() -> void:
+	queue_free()

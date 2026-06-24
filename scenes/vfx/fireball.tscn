@@ -1,19 +1,59 @@
 [gd_scene format=3 uid="uid://bbxhuuf3flj3e"]
 
 [ext_resource type="Script" uid="uid://bh3pm1bk87vss" path="res://scenes/vfx/fireball.gd" id="1_3s14c"]
+[ext_resource type="Shader" uid="uid://dpflhdf8gv5mv" path="res://scenes/vfx/fireball.gdshader" id="2_070sd"]
+[ext_resource type="ArrayMesh" uid="uid://dbi85xwqaikhi" path="res://graphics/vfx/fireball_shell_mesh.obj" id="3_oce6j"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_gxhll"]
+
+[sub_resource type="Gradient" id="Gradient_070sd"]
+colors = PackedColorArray(0.9189753, 0.10485504, 5.7756904e-07, 1, 0.8637947, 0.8185106, 0.02251364, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_oce6j"]
+gradient = SubResource("Gradient_070sd")
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_d5hln"]
+noise_type = 2
+fractal_type = 0
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_tgx7e"]
+noise = SubResource("FastNoiseLite_d5hln")
+seamless = true
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ot34c"]
+render_priority = 0
+shader = ExtResource("2_070sd")
+shader_parameter/noise_sampler = SubResource("NoiseTexture2D_tgx7e")
+shader_parameter/gradient_sampler = SubResource("GradientTexture1D_oce6j")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_070sd"]
+albedo_color = Color(0.9044625, 0.25344738, 0.14245704, 1)
+emission_enabled = true
+emission = Color(0.7754204, 0.19646117, 0.095121734, 1)
+emission_energy_multiplier = 2.3
+
+[sub_resource type="SphereMesh" id="SphereMesh_oce6j"]
+material = SubResource("StandardMaterial3D_070sd")
 
 [node name="Fireball" type="Area3D" unique_id=1378907315]
 collision_layer = 8
 collision_mask = 7
 script = ExtResource("1_3s14c")
 
-[node name="CSGSphere3D" type="CSGSphere3D" parent="." unique_id=669993704]
-radial_segments = 24
-rings = 16
-
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=822748648]
 shape = SubResource("SphereShape3D_gxhll")
 
+[node name="FireballMesh" type="MeshInstance3D" parent="." unique_id=661234659]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, -0.0019214153, 0.049676657, 0.0036531687)
+material_override = SubResource("ShaderMaterial_ot34c")
+mesh = ExtResource("3_oce6j")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=812537702]
+mesh = SubResource("SphereMesh_oce6j")
+
+[node name="Timer" type="Timer" parent="." unique_id=1576717448]
+wait_time = 15.0
+autostart = true
+
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

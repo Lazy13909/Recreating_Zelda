@@ -5,7 +5,7 @@ extends Node3D
 @onready var extra_animation = $AnimationTree.get_tree_root().get_node('ExtraAnimation')
 @onready var face_material: StandardMaterial3D = $Rig/Skeleton3D/Godette_Head.get_surface_override_material(0)
 
-const faces = {
+const faces: Dictionary[Variant, Variant] = {
 	'default': Vector3.ZERO,
 	'blink': Vector3(0.0, 0.5, 0.0)
 }
@@ -18,7 +18,7 @@ var _squash_and_stretch := 1.0
 var squash_and_stretch:
 	set(value):
 		_squash_and_stretch = value
-		var negative = 1.0 + (1.0 - _squash_and_stretch)
+		var negative: float = 1.0 + (1.0 - _squash_and_stretch)
 		scale = Vector3(negative, _squash_and_stretch, negative)
 	get:
 		return _squash_and_stretch
@@ -35,7 +35,7 @@ func attack_toggle(value: bool):
 	attacking = value
 
 func defend(forward: bool) -> void: 
-	var tween = create_tween()
+	var tween: Tween = create_tween()
 	tween.tween_method(_defend_change, 1.0 - float(forward), float(forward), 0.25)
 	
 func _defend_change(value: float) -> void:
@@ -54,14 +54,22 @@ func cast_spell() -> void:
 		extra_animation.animation = 'Spellcast_Shoot'
 		$AnimationTree.set("parameters/ExtraOneShot/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
 
-func shoot_fireball() -> void:
-	get_parent().shoot_fireball($Rig/Skeleton3D/RightHandSlot/wand2/wand/Marker3D.global_position)
+func shoot_magic() -> void:
+	get_parent().shoot_magic($Rig/Skeleton3D/RightHandSlot/wand2/wand/Marker3D.global_position)
 
 func hit() -> void:
 	extra_animation.animation = 'Hit_A'
 	$AnimationTree.set("parameters/ExtraOneShot/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
 	$AnimationTree.set("parameters/AttackOneShot/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_ABORT)
 	attacking = false
+	
+	var tween: Tween = create_tween()
+	tween.tween_method(_hit_effect, 0.0, 0.7, 0.3)
+	tween.tween_method(_hit_effect, 0.7, 0.0, 0.1)
+
+func _hit_effect(value: float) -> void:
+	$Rig/Skeleton3D/Godette_Body.material_overlay.set_shader_parameter('color', Color.FIREBRICK)
+	$Rig/Skeleton3D/Godette_Body.material_overlay.set_shader_parameter('alpha', value)
 	
 func change_face(expression) -> void:
 	face_material.uv1_offset = faces[expression]
@@ -74,3 +82,12 @@ func _on_blink_timer_timeout() -> void:
 
 func can_damage(value: bool) -> void:
 	$Rig/Skeleton3D/RightHandSlot/Sword.can_damage = value
+
+func heal_tween() -> void:
+	var tween: Tween = create_tween()
+	tween.tween_method(_heal_effect, 0.0, 0.7, 0.5)
+	tween.tween_method(_heal_effect, 0.7, 0.0, 0.3)
+
+func _heal_effect(value: float) -> void:
+	$Rig/Skeleton3D/Godette_Body.material_overlay.set_shader_parameter('color', Color.LIGHT_GREEN)
+	$Rig/Skeleton3D/Godette_Body.material_overlay.set_shader_parameter('alpha', value)

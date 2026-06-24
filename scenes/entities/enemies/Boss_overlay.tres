@@ -1,0 +1,10 @@
+[gd_resource type="ShaderMaterial" format=3 uid="uid://bks8pbg2bdxhg"]
+
+[ext_resource type="Shader" uid="uid://dx6eb0kpxgacm" path="res://scenes/vfx/overlay.gdshader" id="1_ap63h"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_ap63h")
+shader_parameter/color = Color(0.8160193, 0.15680832, 0.21496585, 1)
+shader_parameter/energy = 1.0
+shader_parameter/alpha = 0.0

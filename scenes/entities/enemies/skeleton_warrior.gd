@@ -1,6 +1,7 @@
 extends Enemy
 
 func _ready() -> void:
+	health = 3
 	attack_radius = 2.0
 
 func _physics_process(delta: float) -> void:
