@@ -12,9 +12,8 @@
 
 ## 📸 Screenshots
 
-<!-- Замени на свои скриншоты -->
-| Gameplay | Combat | Environment |
-|----------|--------|-------------|
+| Gameplay | Combat |
+|----------|--------|
 | ![gameplay](screenshots/gameplay.png) | ![combat](screenshots/combat.png) |
 
 ---
