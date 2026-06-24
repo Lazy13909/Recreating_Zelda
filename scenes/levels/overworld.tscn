@@ -130,7 +130,7 @@ shadow_opacity = 0.9
 shadow_blur = 4.5
 
 [node name="player" parent="Entities" parent_id_path=PackedInt32Array(1765622773) index="0" unique_id=719704501]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -25.965683, 16.752525, 317.87744)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.7006721, 16.752525, 328.06976)
 
 [node name="Path3D" type="Path3D" parent="Entities" parent_id_path=PackedInt32Array(1765622773) index="1" unique_id=126970019]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 80, 0)
@@ -604,6 +604,6 @@ script = ExtResource("37_0882p")
 shape = SubResource("Resource_g8bsm")
 
 [node name="Camera3D" type="Camera3D" parent="." index="5" unique_id=789382201]
-transform = Transform3D(0.99973184, 0.007730444, -0.021830099, 0, 0.9426415, 0.33380687, 0.023158433, -0.33371735, 0.94238865, 7.126297, 26.21357, -49.781906)
+transform = Transform3D(0.99973184, 0.007730444, -0.021830099, 0, 0.9426415, 0.33380687, 0.023158433, -0.33371735, 0.94238865, 7.126297, -28.862804, 321.9455)
 
 [connection signal="body_entered" from="Enviroment/castle/CastleArea" to="." method="_on_castle_area_body_entered"]
